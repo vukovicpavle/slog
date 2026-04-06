@@ -1,0 +1,330 @@
+version: 1
+
+agent:
+  public_entrypoint: workflow-orchestrator
+  human_handoff_status: ready-for-assignment
+
+lifecycles:
+  project:
+    modes:
+      greenfield:
+        stages:
+          - idea
+          - intake
+          - clarifying
+          - stack-and-constraints
+          - milestone-proposal
+          - ready
+        ready_gate: project-ready
+      adoption:
+        stages:
+          - audit
+          - reconcile
+          - baseline
+          - adoption-ready
+        ready_gate: adoption-ready
+  feature:
+    stages:
+      - request
+      - clarify
+      - spec
+      - dependencies
+      - ready
+      - breakdown
+      - ready-for-assignment
+    ready_gate: feature-ready
+  delivery:
+    stages:
+      - in-progress
+      - pr-linked
+      - in-review
+      - done
+      - release-and-retro
+
+fields:
+  issue_type:
+    options:
+      - project-brief
+      - epic
+      - feature
+      - task
+      - bug
+      - chore
+  status:
+    options:
+      - intake
+      - clarifying
+      - awaiting-decision
+      - planned
+      - ready-for-assignment
+      - in-progress
+      - in-review
+      - done
+      - blocked
+  readiness:
+    options:
+      - missing-basics
+      - draft
+      - ready
+  mode:
+    options:
+      - greenfield
+      - adoption
+  priority:
+    options:
+      - high
+      - medium
+      - low
+  risk:
+    options:
+      - high
+      - medium
+      - low
+
+gates:
+  project-ready:
+    required:
+      - problem-or-goal
+      - target-users
+      - mvp-scope
+      - out-of-scope
+      - platform
+      - ui-ux-direction
+      - approved-stack
+      - key-constraints
+      - milestone-plan
+      - success-criteria
+    allows:
+      - create-milestones
+      - create-epics
+      - create-feature-issues
+    blocks:
+      - create-implementation-issues
+      - start-implementation
+  adoption-ready:
+    required:
+      - current-state-summary
+      - github-inventory
+      - mapping-proposal
+      - migration-scope
+      - approved-target-model
+    allows:
+      - standardize-active-work
+      - route-new-work-through-orchestrator
+    blocks:
+      - mass-relabeling
+      - broad-board-rewrites
+      - backlog-wide-regeneration
+  feature-ready:
+    required:
+      - linked-project-or-epic
+      - user-outcome
+      - acceptance-criteria
+      - main-flow
+      - detailed-ui-ux-direction
+      - edge-cases
+      - dependencies
+      - technical-impact
+      - test-impact
+      - docs-or-rollout-impact
+    allows:
+      - create-child-tasks
+      - mark-ready-for-assignment
+    blocks:
+      - start-implementation
+
+artifacts:
+  project-brief:
+    issue_template: project-brief.yml
+    doc_path_pattern: docs/projects/{slug}/brief.md
+  adoption-brief:
+    issue_template: adoption-request.yml
+    doc_path_pattern: docs/projects/{slug}/adoption.md
+  feature:
+    issue_template: feature-request.yml
+    doc_path_pattern: docs/features/{slug}.md
+
+milestones:
+  default_sequence:
+    - id: m0
+      name: Discovery and decisions
+      description: Validate the problem, target users, scope, stack, and baseline decisions.
+    - id: m1
+      name: Foundation and setup
+      description: Establish the repo, environments, workflow surfaces, and shared architecture foundations.
+    - id: m2
+      name: Core MVP workflows
+      description: Deliver the central user-facing workflows that make the MVP usable.
+    - id: m3
+      name: Polish, QA, docs
+      description: Close quality gaps, align docs, and reduce launch risk.
+    - id: m4
+      name: Release and launch
+      description: Final release preparation, rollout, and launch follow-through.
+
+labels:
+  stable_taxonomy:
+    type:
+      - type/project-brief
+      - type/epic
+      - type/feature
+      - type/task
+      - type/bug
+      - type/chore
+    area:
+      - area/product
+      - area/frontend
+      - area/backend
+      - area/platform
+      - area/docs
+    risk:
+      - risk/high
+      - risk/medium
+      - risk/low
+    mode:
+      - mode/greenfield
+      - mode/adoption
+
+github:
+  api_version: "2026-03-10"
+  project_fields:
+    - name: Status
+      data_type: SINGLE_SELECT
+      options:
+        - intake
+        - clarifying
+        - awaiting-decision
+        - planned
+        - ready-for-assignment
+        - in-progress
+        - in-review
+        - done
+        - blocked
+    - name: Readiness
+      data_type: SINGLE_SELECT
+      options:
+        - missing-basics
+        - draft
+        - ready
+    - name: Mode
+      data_type: SINGLE_SELECT
+      options:
+        - greenfield
+        - adoption
+    - name: Priority
+      data_type: SINGLE_SELECT
+      options:
+        - high
+        - medium
+        - low
+    - name: Risk
+      data_type: SINGLE_SELECT
+      options:
+        - high
+        - medium
+        - low
+  recommended_views:
+    - name: Intake
+      description: New project and feature requests entering the system.
+      filter: Status:"intake" OR Status:"clarifying"
+    - name: Planning
+      description: Work still awaiting decisions or baseline completion.
+      filter: Status:"clarifying" OR Status:"awaiting-decision" OR Readiness:"draft"
+    - name: Ready for Assignment
+      description: Work that passed the ready gate and is waiting for a human assignee.
+      filter: Status:"ready-for-assignment" AND Readiness:"ready"
+    - name: In Progress
+      description: Human-assigned work actively being delivered.
+      filter: Status:"in-progress" OR Status:"in-review"
+    - name: Blocked
+      description: Work that cannot advance because of dependencies or missing decisions.
+      filter: Status:"blocked"
+    - name: Done
+      description: Completed work for milestone and release review.
+      filter: Status:"done"
+  labels:
+    - name: type/project-brief
+      color: 1D76DB
+      description: Canonical project intake and planning issue.
+    - name: type/epic
+      color: 5319E7
+      description: Major capability slice under a project.
+    - name: type/feature
+      color: 0E8A16
+      description: User-visible feature issue.
+    - name: type/task
+      color: FBCA04
+      description: Deliverable implementation task or sub-issue.
+    - name: type/bug
+      color: D73A4A
+      description: Defect or regression that needs corrective work.
+    - name: type/chore
+      color: BFDADC
+      description: Non-user-facing maintenance or operational work.
+    - name: area/product
+      color: F9D0C4
+      description: Product planning, scope, or workflow design work.
+    - name: area/frontend
+      color: C5DEF5
+      description: Frontend or client-facing implementation work.
+    - name: area/backend
+      color: D4C5F9
+      description: Backend, API, or service-side implementation work.
+    - name: area/platform
+      color: BFD4F2
+      description: Platform, infrastructure, or developer workflow work.
+    - name: area/docs
+      color: 0075CA
+      description: Documentation or knowledge-base work.
+    - name: risk/high
+      color: B60205
+      description: High delivery or product risk that needs extra attention.
+    - name: risk/medium
+      color: D93F0B
+      description: Moderate risk that should be tracked explicitly.
+    - name: risk/low
+      color: FBCA04
+      description: Low risk work item.
+    - name: mode/greenfield
+      color: 0E8A16
+      description: Work planned in a new-project flow.
+    - name: mode/adoption
+      color: 5319E7
+      description: Work planned in an existing-project adoption flow.
+
+governance:
+  ready_for_assignment:
+    required:
+      - feature-ready-gate-passed
+      - parent-and-milestone-linked
+      - project-fields-synced
+      - native-relationships-synced
+      - durable-artifact-synced-if-needed
+  definition_of_done:
+    required:
+      - pull-request-linked
+      - acceptance-criteria-satisfied
+      - tests-updated-or-marked-not-needed
+      - docs-updated-or-marked-not-needed
+      - rollout-impact-reviewed
+      - milestone-impact-reviewed
+      - issue-state-updated
+  release_prep:
+    collect:
+      - milestone-scope
+      - completed-work
+      - open-blockers
+      - release-notes-input
+      - docs-and-rollout-checks
+  retro:
+    capture:
+      - what-worked
+      - what-slowed-planning
+      - missing-automation
+      - workflow-or-template-updates
+
+rules:
+  state_source_of_truth: github-project-field:Status
+  readiness_source_of_truth: github-project-field:Readiness
+  labels_are_for_classification_not_workflow: true
+  prs_must_reference_parent_issue: true

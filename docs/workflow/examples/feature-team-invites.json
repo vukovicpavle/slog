@@ -1,0 +1,67 @@
+{
+  "kind": "feature",
+  "slug": "team-invites",
+  "issue": {
+    "title": "[Feature] Team invites",
+    "body": "## User outcome\nWorkspace admins can invite teammates by email.\n\n## Main flow\nAn admin enters an email, sends the invite, and sees the pending invite in the workspace settings.\n\n## Detailed UI/UX direction\nPlace the Invite teammate button in the top-right of Team settings. Clicking it opens a modal with an email field, helper text, and a primary CTA. Show pending invites below the member list with clear pending and expired states.\n\n## Acceptance criteria\n1. Admins can send an invite to a valid email address.\n2. The invited email is shown as pending until accepted.\n3. Duplicate active invites are prevented.\n\n## Edge cases\nExpired invites and already-joined users are handled clearly.\n\n## Technical, test, and docs impact\nNeeds invite persistence, email delivery, admin UI, and updated onboarding docs.",
+    "labels": [
+      "type/feature",
+      "area/product",
+      "mode/greenfield",
+      "risk/medium"
+    ],
+    "milestone": "M2 - Core MVP workflows"
+  },
+  "project": {
+    "owner": "example-org",
+    "number": 1,
+    "fields": {
+      "Status": "planned",
+      "Readiness": "ready",
+      "Mode": "greenfield",
+      "Priority": "high",
+      "Risk": "medium"
+    }
+  },
+  "relationships": {
+    "parent_issue": 12,
+    "blocked_by": [
+      34
+    ]
+  },
+  "artifact": {
+    "title": "Feature spec: Team invites",
+    "summary": "Allow workspace admins to invite teammates by email.",
+    "sections": {
+      "User outcome": "Workspace admins can invite teammates by email.",
+      "Main flow": [
+        "Admin opens team settings.",
+        "Admin enters an email address.",
+        "System sends the invite and records a pending state."
+      ],
+      "Detailed UI/UX direction": [
+        "Place the Invite teammate button in the top-right of Team settings.",
+        "Open a modal with an email field, helper text, and a primary CTA.",
+        "Show pending invites below the member list with clear pending and expired states."
+      ],
+      "Acceptance criteria": [
+        "Admins can send an invite to a valid email address.",
+        "Pending invites remain visible until accepted or revoked.",
+        "Duplicate active invites are prevented."
+      ],
+      "Edge cases": [
+        "Expired invites are handled clearly.",
+        "Already-joined users cannot be re-invited silently."
+      ],
+      "Technical impact": [
+        "Invite persistence",
+        "Email delivery integration",
+        "Admin-facing team management UI"
+      ],
+      "Docs and rollout impact": [
+        "Update onboarding and team-management docs.",
+        "Add rollout notes for email provider configuration."
+      ]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+name: Workflow adoption
+description: Capture how this GitHub-native workflow should be applied to an existing repository.
+title: "[Adoption] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form if you are planning adoption manually. In normal use, start with Copilot Chat and let `workflow-orchestrator` audit the current state first.
+  - type: textarea
+    id: current_state
+    attributes:
+      label: Current repo and workflow state
+      description: Describe the repo, active workflows, and how work is currently managed.
+    validations:
+      required: true
+  - type: textarea
+    id: pain_points
+    attributes:
+      label: Pain points
+      description: What is not working well today?
+    validations:
+      required: true
+  - type: dropdown
+    id: adoption_mode
+    attributes:
+      label: Preferred adoption mode
+      options:
+        - Observe
+        - Assist
+        - Standardize
+    validations:
+      required: true
+  - type: textarea
+    id: active_work
+    attributes:
+      label: Active work to prioritize
+      description: Which open issues, milestone, or teams should be handled first?
+    validations:
+      required: false
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Include repo history, board setup, compliance, or change-management constraints.
+    validations:
+      required: false

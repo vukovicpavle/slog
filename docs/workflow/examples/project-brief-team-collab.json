@@ -1,0 +1,63 @@
+{
+  "kind": "project-brief",
+  "slug": "team-collab-app",
+  "issue": {
+    "title": "[Project] Team collaboration app",
+    "body": "## Problem or goal\nCreate a lightweight collaboration app for small product teams.\n\n## Target users\nTeam leads and individual contributors in small software teams.\n\n## MVP scope\nWorkspace creation, basic task tracking, team invites, and activity visibility.\n\n## Out of scope\nAdvanced reporting, billing, and external marketplace integrations.\n\n## Platform\nWeb app.\n\n## UI/UX direction\nUse vibrant colors, generous whitespace, and a lightweight, friendly product feel that makes daily coordination fast.\n\n## Constraints and integrations\nEmail delivery, simple auth, and a low-maintenance deployment model.\n\n## Success criteria\nA small team can create a workspace, invite teammates, and manage daily work without onboarding help.",
+    "labels": [
+      "type/project-brief",
+      "area/product",
+      "mode/greenfield",
+      "risk/medium"
+    ],
+    "milestone": "M0 - Discovery and decisions"
+  },
+  "project": {
+    "owner": "example-org",
+    "number": 1,
+    "fields": {
+      "Status": "clarifying",
+      "Readiness": "draft",
+      "Mode": "greenfield",
+      "Priority": "high",
+      "Risk": "medium"
+    }
+  },
+  "artifact": {
+    "title": "Project brief: Team collaboration app",
+    "summary": "Greenfield collaboration product for small software teams.",
+    "sections": {
+      "Problem or goal": "Create a lightweight collaboration app for small product teams.",
+      "Target users": [
+        "Team leads",
+        "Individual contributors"
+      ],
+      "MVP scope": [
+        "Workspace creation",
+        "Basic task tracking",
+        "Team invites",
+        "Activity visibility"
+      ],
+      "Out of scope": [
+        "Advanced reporting",
+        "Billing",
+        "Marketplace integrations"
+      ],
+      "Platform": "Web app",
+      "UI/UX direction": [
+        "Use a vibrant, approachable color palette.",
+        "Favor lightweight, low-friction task flows over dense dashboards.",
+        "Use generous whitespace and clear activity cues."
+      ],
+      "Constraints and integrations": [
+        "Email delivery",
+        "Simple authentication",
+        "Low-maintenance deployment"
+      ],
+      "Success criteria": [
+        "A team can create a workspace and invite teammates.",
+        "The MVP is usable without onboarding help."
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "kind": "adoption-brief",
+  "slug": "legacy-analytics",
+  "issue": {
+    "title": "[Adoption] Legacy analytics repo workflow adoption",
+    "body": "## Current repo and workflow state\nThe repo has active production work, open issues, labels used as workflow states, and no consistent milestone model.\n\n## Pain points\nPlanning is fragmented across issues, PRs, and chat, and blocked work is hard to see.\n\n## Preferred adoption mode\nAssist.\n\n## Active work to prioritize\nCurrent Q2 dashboard reliability milestone and the top ten open issues.\n\n## Constraints\nThe team does not want closed historical issues rewritten, and the active board must remain usable during migration.",
+    "labels": [
+      "type/project-brief",
+      "area/product",
+      "mode/adoption",
+      "risk/high"
+    ],
+    "milestone": "M0 - Discovery and decisions"
+  },
+  "project": {
+    "owner": "example-org",
+    "number": 1,
+    "fields": {
+      "Status": "clarifying",
+      "Readiness": "draft",
+      "Mode": "adoption",
+      "Priority": "high",
+      "Risk": "high"
+    }
+  },
+  "artifact": {
+    "title": "Adoption brief: Legacy analytics repo",
+    "summary": "Incremental adoption of the GitHub-native workflow in a live repository.",
+    "sections": {
+      "Current-state summary": [
+        "Labels currently encode workflow state.",
+        "Milestones are inconsistent.",
+        "Active production work must continue during migration."
+      ],
+      "Recommended mode": "Assist",
+      "Migration scope": [
+        "Route new work through the orchestrator.",
+        "Standardize the active milestone first.",
+        "Leave closed history intact."
+      ],
+      "Open questions": [
+        "Which existing labels should be preserved as stable taxonomy?",
+        "Which current board columns map to Status and Readiness?"
+      ]
+    }
+  }
+}

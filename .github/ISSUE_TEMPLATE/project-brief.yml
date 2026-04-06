@@ -1,0 +1,73 @@
+name: Project brief
+description: Capture a new project or major initiative before creating epics and features.
+title: "[Project] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form if you are capturing the work manually. In normal use, start with Copilot Chat and let `workflow-orchestrator` build the brief with you.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or goal
+      description: What should this project accomplish?
+      placeholder: We want to build...
+    validations:
+      required: true
+  - type: textarea
+    id: users
+    attributes:
+      label: Target users
+      description: Who is this for?
+    validations:
+      required: true
+  - type: textarea
+    id: mvp_scope
+    attributes:
+      label: MVP scope
+      description: What must be included in the first useful version?
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: What is intentionally excluded for now?
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Web app
+        - Mobile app
+        - API or service
+        - Internal tool
+        - CLI
+        - Library or SDK
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: design_direction
+    attributes:
+      label: UI/UX direction
+      description: "High-level visual and interaction direction. Example: use vibrant colors and a lightweight, friendly feel. If there is no end-user UI, say that explicitly."
+      placeholder: Use vibrant colors, generous spacing, and fast, low-friction flows.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and integrations
+      description: Include auth, payments, data, compliance, AI, timeline, team, or external systems.
+    validations:
+      required: false
+  - type: textarea
+    id: success_criteria
+    attributes:
+      label: Success criteria
+      description: How will we know the MVP is successful?
+    validations:
+      required: true

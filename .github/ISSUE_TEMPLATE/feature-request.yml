@@ -1,0 +1,66 @@
+name: Feature request
+description: Capture a feature inside an approved project context.
+title: "[Feature] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form if you are documenting a feature manually. In normal use, start with Copilot Chat and let `workflow-orchestrator` shape the feature before child tasks are created.
+  - type: input
+    id: parent
+    attributes:
+      label: Linked project or epic
+      description: Link the parent project brief or epic.
+      placeholder: "#123"
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: User outcome
+      description: What will the user be able to do?
+    validations:
+      required: true
+  - type: textarea
+    id: main_flow
+    attributes:
+      label: Main flow
+      description: Describe the expected end-to-end behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: ui_ux_details
+    attributes:
+      label: Detailed UI/UX direction
+      description: Describe entry point, placement, states, copy, and key interactions. If there is no user-facing UI change, say that explicitly.
+      placeholder: Put the "Invite teammate" button in the top-right of Team settings. Clicking it opens a modal with email input and primary CTA.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: List concrete pass conditions.
+    validations:
+      required: true
+  - type: textarea
+    id: edge_cases
+    attributes:
+      label: Edge cases
+      description: What failure modes or special cases matter?
+    validations:
+      required: false
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Other issues, systems, or milestones this feature depends on.
+    validations:
+      required: false
+  - type: textarea
+    id: impact
+    attributes:
+      label: Technical, test, and docs impact
+      description: Note any system changes, test implications, or documentation and rollout needs.
+    validations:
+      required: true
