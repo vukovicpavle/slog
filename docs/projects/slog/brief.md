@@ -1,6 +1,6 @@
 # Project brief: Slog — Local Community App
 
-> **Status:** Draft · **Mode:** Greenfield · **Readiness:** Basics complete
+> **Status:** Draft · **Mode:** Greenfield · **Readiness:** Ready
 
 ## Problem or goal
 
@@ -44,7 +44,7 @@ Cross-platform mobile and web app — **Expo (React Native)** targeting iOS, And
 | Language | TypeScript |
 | Backend / BaaS | Supabase (Postgres, Auth, Realtime, Storage) |
 | Client SDK | `@supabase/supabase-js` |
-| Styling | *(to be decided)* |
+| Styling | NativeWind (Tailwind CSS for React Native) |
 
 ## UI/UX direction
 
@@ -61,6 +61,16 @@ Cross-platform mobile and web app — **Expo (React Native)** targeting iOS, And
 - **Realtime:** Supabase Realtime for live feed updates and comments.
 - **Storage:** Supabase Storage for profile images and event media.
 - **Deployment:** Expo EAS for mobile builds; Supabase hosted for backend.
+
+## Milestone plan
+
+| ID | Milestone | Description |
+|---|---|---|
+| M0 | Discovery and decisions | Validate the problem, target users, scope, stack, and baseline decisions. |
+| M1 | Foundation and setup | Establish the repo, environments, workflow surfaces, and shared architecture foundations. |
+| M2 | Core MVP workflows | Deliver the central user-facing workflows that make the MVP usable (feed, comments, polls, events, auth, neighborhoods). |
+| M3 | Polish, QA, docs | Close quality gaps, align docs, and reduce launch risk. |
+| M4 | Release and launch | Final release preparation, rollout, and launch follow-through. |
 
 ## Success criteria
 
